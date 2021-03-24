@@ -1,0 +1,32 @@
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Search</ion-label>
+      <ion-input v-model="searchtext"></ion-input>
+    </ion-item>
+    <ion-item v-for="col in pagemeta.tablemeta.relationView" :key="col.table">
+      <ion-label position="stacked"><b>{{pagemeta.tablemeta.languange[$store.state.language].field[col.slice(0, -1)]}}</b></ion-label>
+      <template v-if="$store.state.small_foreign.indexOf(col.slice(0, -4))>=0"> 
+        <ion-select v-model="datafilter[col.slice(0,-1)]">   
+          <ion-select-option v-for="item in $store.state.masterdata[col.slice(0, -4)]" :value="item.id">
+            {{item.nama }}            
+          </ion-select-option>
+        </ion-select>
+      </template>
+  
+      
+    </ion-item>
+    <ion-item>
+      <ion-button @click="closeFilter" size="small">
+        <ion-icon class="fa fa-close fa-lg" slot="start" ></ion-icon> Close
+      </ion-button>
+      <ion-button @click="resetFilter" size="small" color="dark">
+        <ion-icon class="fa fa-power-off fa-lg" slot="start" ></ion-icon> Reset
+      </ion-button>
+      <ion-button @click="runFilter" size="small" color="warning">
+        <ion-icon class="fa fa-check fa-lg" slot="start" ></ion-icon> Filter
+      </ion-button>
+    </ion-item>
+    </ion-list>
+
+  </ion-content>

@@ -1,0 +1,11 @@
+<ion-header :translucent="true">
+    <ion-toolbar  color="primary">
+    <ion-buttons slot="start" v-if="!showsearch">
+        <ion-back-button v-if="back && role!='single'" @click="$router.go(-1)"></ion-back-button>
+        <ion-button v-if="back && (role!='list')" @click="goBack"><ion-icon slot="start" class="fa fa-close"></ion-icon></ion-button>
+        <ion-menu-button v-if="!back"></ion-menu-button>
+    </ion-buttons>
+    <ion-title v-if="!showsearch">{{judul}}</ion-title>
+   
+    </ion-toolbar>
+</ion-header>

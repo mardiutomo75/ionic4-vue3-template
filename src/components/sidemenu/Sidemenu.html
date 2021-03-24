@@ -1,0 +1,50 @@
+<ion-menu content-id="main-content" type="overlay">
+    <ion-content>
+        <ion-list id="inbox-list">
+            <ion-list-header>
+                <ion-avatar item-start><img :src="'./assets/images/faces/face1.jpg'"/></ion-avatar>
+            </ion-list-header>
+            <ion-note><br><small>Mardi Siswo Utomo</small></ion-note>
+            <span v-for="(opt, index) in nav" :key="index">
+                <ion-menu-toggle auto-hide="true" v-if="opt.url">
+                    <ion-item lines="none"  v-if="hasPermission('list',opt.url) && opt.enable" @click="toggleSubmenu('menu'+index,opt.url)">
+                        <ion-icon :class="'icon-menu ' +opt.icon"></ion-icon>
+                        <ion-label>&nbsp; {{opt.title}}</ion-label>
+                    </ion-item>   
+                </ion-menu-toggle>
+                <ion-item lines="none"  v-if="!opt.url && hasPermission('list',opt.url) && opt.enable" @click="toggleSubmenu('menu'+index,opt.url)">
+                    <ion-icon :class="'icon-menu ' +opt.icon"></ion-icon>
+                    <ion-label>&nbsp; {{opt.title}}</ion-label>
+                </ion-item>   
+                <ion-menu-toggle auto-hide="true" v-if="!opt.url" v-for="opt2 in opt.children" :key="opt2.name+opt2.url">
+                    <ion-item lines="none"  @click="toggleSubmenu('menu'+index,opt2.url)" v-if="submenu2['menu'+index]">
+                        <ion-label>&nbsp; &nbsp; &nbsp; {{opt2.title}}</ion-label>
+                    </ion-item>  
+                </ion-menu-toggle>     
+            </span>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<!-- 
+<ion-menu side="start">
+    <ion-item color="primary">
+        <ion-avatar item-start><img :src="'@/assets/images/faces/face1.jpg'" />
+        </ion-avatar>
+        <ion-label>&nbsp; &nbsp;<small>Mardi Siswo Utomo</small></ion-label>
+    </ion-item>
+    <ion-content class="content-menu" id="main-menu">
+        <ion-list>
+            <span v-for="opt,index in nav" :key="opt.name+opt.url">
+            <ion-item lines="none"  v-if="hasPermission('list',opt.url) && opt.enable" @click="toggleSubmenu('menu'+index,opt.url)">
+                <ion-icon :class="'icon-menu ' +opt.icon"></ion-icon>
+                <ion-label>&nbsp; {{opt.name}}</ion-label>
+            </ion-item>    
+            <ion-item lines="none" v-for="opt2 in opt.children" :key="opt2.name+opt2.url" @click="toggleSubmenu('menu'+index,opt2.url)" >
+                <ion-label>&nbsp; &nbsp; &nbsp; {{opt2.name}}</ion-label>
+            </ion-item>            
+            </span>
+        </ion-list>
+    </ion-content>
+    <ion-menu-controller></ion-menu-controller>
+  </ion-menu> -->

@@ -1,0 +1,25 @@
+<ion-page ref="listData">
+  <HeaderComponent :judul="judul" :back="false" role="list" v-if="pagemeta.state=='list'"/>
+  <HeaderComponent :judul="judul" :back="true" @goBack="closeFilter" role="single" v-if="pagemeta.state!='list'"/>
+  <!-- ============= List Data =================== -->
+    <ListItemComponent :pagemeta="pagemeta" @showFilter="showFilter" @goSingle="goSingle" @goinf="startinfinite"
+    @stopinf="stopinfinite" @goSearch="goSearch" @goAdd="goAdd" v-if="pagemeta.state=='list'"/>
+  <!-- ============= End of List Data =================== -->
+  
+  <!-- ==================== Filter data ====================== -->
+  <FilterComponent ref="filterForm" :pagemeta="pagemeta" @closeFilter="closeFilter" 
+  @resetFilter="resetFilter" @runFilter="runFilter" v-if="pagemeta.state=='filter'"/>
+  <!-- ==================== End of Filter data ====================== -->
+
+  <!-- ==================== Add data ====================== -->
+  <AddComponent ref="addForm" :pagemeta="pagemeta" @closeAdd="closeFilter" 
+   @goSave="runFilter" v-if="pagemeta.state=='add'"/>
+  <!-- ==================== End of Add data ====================== -->
+
+  <!-- ==================== Single data ====================== -->
+  <SingleComponent ref="singleForm" :pagemeta="pagemeta" @goEdit="goAdd"
+  v-if="pagemeta.state=='single'" @closeSingle="closeSingle"/>
+  <!-- ==================== End of Single data ====================== -->
+
+</ion-page>
+

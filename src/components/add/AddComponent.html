@@ -1,0 +1,44 @@
+<ion-content>
+  <ion-list>
+    <ion-item v-for="col in field" :key="col.table">
+      <ion-label position="stacked"><b>{{pagemeta.tablemeta.languange[$store.state.language].field[col]}}</b></ion-label>
+
+      <template v-if="$store.state.small_foreign.indexOf(col.slice(0, -3))>=0 && ftype[col]=='select'"> 
+        <ion-select v-model="data[col]">   
+          <ion-select-option v-for="item in $store.state.masterdata[col.slice(0, -3)]" :value="item.id">
+            {{item.nama }}            
+          </ion-select-option>
+        </ion-select>
+      </template>
+      <template v-if="$store.state.small_foreign.indexOf(col.slice(0, -3))<0 && ftype[col]=='select'"> 
+        <ion-select v-model="data[col]">   
+          <ion-select-option v-for="item in $store.state.masterdata[col.slice(0, -3)]" :value="item.id">
+            {{item.nama }}            
+          </ion-select-option>
+        </ion-select>
+      </template>
+      <template v-if="ftype[col]=='selectfo'"> 
+        <ion-select v-model="data[col]">   
+          <ion-select-option v-for="item in $store.state.fixoption[col]" :value="item.id">
+            {{item['nama_'+$store.state.language] }}            
+          </ion-select-option>
+        </ion-select>
+      </template>
+  
+      <ion-input type="date" v-model="data[col]" v-if="ftype[col]=='date'"></ion-input>
+      <ion-input type="text" v-model="data[col]" v-if="ftype[col]=='string'"></ion-input>
+      <ion-input type="numeric" v-model="data[col]" v-if="ftype[col]=='numeric'"></ion-input>
+      <ion-input type="integer" v-model="data[col]" v-if="ftype[col]=='integer'"></ion-input>
+      <ion-input type="file" v-model="data[col]" v-if="ftype[col]=='file'"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-button @click="closeAdd" size="small" color="dark">
+        <ion-icon class="fa fa-close fa-lg" slot="start" ></ion-icon> Batal
+      </ion-button>
+      <ion-button @click="goSave" size="small" color="danger">
+        <ion-icon class="fa fa-check fa-lg" slot="start" ></ion-icon> Simpan
+      </ion-button>
+    </ion-item>
+    </ion-list>
+
+  </ion-content>

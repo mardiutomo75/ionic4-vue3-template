@@ -1,0 +1,45 @@
+
+#container {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+ion-item {
+  margin: 0 10px 0 10px
+}
+.fa-lg {
+   line-height: 1em  !important;
+}
+ion-card-footer {
+  padding: 10px;
+  margin-top: 15px ;
+}
+ion-card-content {
+  max-height: 75vh;
+  overflow: auto;
+}
+ion-card-title {
+  text-align: center;
+}
+.text-center {
+  text-align: center;
+}

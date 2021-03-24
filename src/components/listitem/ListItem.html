@@ -1,0 +1,49 @@
+
+<ion-content :fullscreen="false" ref="content"
+:scroll-events="true" @ionScroll="logScrolling($event)" v-if="pagemeta.items">  
+  <ion-refresher slot="fixed" @ionRefresh="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher> 
+  <ion-list v-if="pagemeta.items.length>0">
+    <ion-item v-for="(item,index) in pagemeta.items" :key="item.id" v-on:click="goSingle(item)" class="list-item">
+      <!-- <ion-thumbnail slot="start" v-if="pagemeta.tablemeta.fieldUpload[0]">
+        <img :src="$store.state.baseUrl+pagemeta.tablemeta.fileRoot+item[pagemeta.tablemeta.fieldUpload[0]] " @error="picerror">
+      </ion-thumbnail> -->
+      <ion-label class="ion-text-wrap">
+        <h2>
+        {{ tampil(item,pagemeta.tablemeta.fieldList[0]) }}
+        </h2>
+        <h3>{{ tampil(item,pagemeta.tablemeta.fieldList[1]) }}</h3>
+        <p>{{ tampil(item,pagemeta.tablemeta.fieldList[2]) }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-list v-if="pagemeta.items.length<=0" class="list-empty">
+    <ion-icon class="fa fa-folder-open fa-max"></ion-icon>
+    <br>Empty
+  </ion-list>
+
+  <ion-infinite-scroll v-if="pagemeta.infinitescroll" threshold="100px" @ionInfinite="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button @click="scrollToTop($event)" size="small">
+      <ion-icon class="fa fa-arrow-up fa-lg"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button size="small" color="danger">
+      <ion-icon class="fa fa-chevron-right"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="end" >
+      <ion-fab-button size="small" color="dark" @click="showFilter">
+        <ion-icon class="fa fa-filter fa-lg"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button size="small" color="warning"  @click="goAdd">
+        <ion-icon class="fa fa-plus-circle fa-lg" ></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
+

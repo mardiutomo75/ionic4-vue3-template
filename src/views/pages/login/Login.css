@@ -1,0 +1,15 @@
+.login-form {
+    width: 80vw;
+    margin: 10vh auto 10vh auto;
+    border-radius: 2%;
+}
+.login-form ion-button {
+    width: 95%;
+    margin: 15px auto 5px auto;
+}
+.login-form .native-input {
+    padding:10px;
+}
+.login-form .teks-tengah {
+    margin : auto;
+}

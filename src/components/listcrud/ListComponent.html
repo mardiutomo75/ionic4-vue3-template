@@ -1,0 +1,40 @@
+<template>
+<ion-content :fullscreen="false" ref="content" v-if="pagemeta.state=='list'"
+    :scroll-events="true" @ionScroll="logScrolling($event)">
+    <ion-refresher slot="fixed" @ionRefresh="refresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher> 
+    <!-- ============= List Data =================== -->
+    <ion-list>
+      <ListItemComponent @itemChild="goSingle" v-for="litem in pagemeta.items" :key="litem.id" :item="litem" 
+      :tablemeta="pagemeta.tablemeta" />
+    </ion-list>
+    <!-- ============= End of List Data =================== -->
+
+    <ion-infinite-scroll v-if="infinitescroll" threshold="100px" @ionInfinite="loadData($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button @click="scrollToTop($event)" size="small">
+        <ion-icon class="fa fa-arrow-up fa-lg"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+      <ion-fab-button size="small" color="danger">
+        <ion-icon class="fa fa-chevron-right"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="end" >
+        <ion-fab-button size="small" color="dark" @click="showFilter">
+          <ion-icon class="fa fa-filter fa-lg"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button size="small" color="warning">
+          <ion-icon class="fa fa-plus-circle fa-lg" ></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+  </ion-content>
+   <!-- ==================== Filter data ====================== -->
+ <FilterComponent ref="filterForm" :pagemeta="pagemeta" @closeFilter="closeFilter" 
+ @resetFilter="resetFilter" @runFilter="runFilter"/>
+</template>
