@@ -1,3 +1,4 @@
+<a href="https://sinarafa.com/2022/07/download-genshin-impact-untuk-pc-terbaru-supercepat/">Download Genshin Impact for PC</a><br>
 <a href="https://cse.google.ac/url?q=https://sinarafa.com/2022/07/download-genshin-impact-untuk-pc-terbaru-supercepat/">Download Genshin Impact for PC</a><br>
 <a href="https://cse.google.ad/url?q=https://sinarafa.com/2022/07/download-genshin-impact-untuk-pc-terbaru-supercepat/">Download Genshin Impact for PC</a><br>
 <a href="https://cse.google.ae/url?q=https://sinarafa.com/2022/07/download-genshin-impact-untuk-pc-terbaru-supercepat/">Download Genshin Impact for PC</a><br>
